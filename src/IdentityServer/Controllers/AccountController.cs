@@ -240,17 +240,8 @@ namespace IdentityServer.Controllers
         {
             if (returnUrl != null)
             {
-                string[] parts = returnUrl.Split(',');
-                if (parts.Length > 1)
-                {
-                    ViewData["ReturnUrl"] = returnUrl;
-                }
-                else
-                {
-                    ViewData["ReturnUrl"] = parts[0];
-                }
+                ViewData["ReturnUrl"] = returnUrl;
             }
-
             return View();
         }
 
