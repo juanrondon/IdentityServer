@@ -78,7 +78,7 @@ namespace IdentityServer.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginInputModel model)
-        {            
+        {
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
@@ -90,7 +90,7 @@ namespace IdentityServer.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    
+
                     return Redirect(model.ReturnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -261,12 +261,6 @@ namespace IdentityServer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
-            var parts = returnUrl?.Split(',');
-            if (parts?.Length > 1)
-            {
-                ViewData["ReturnUrl"] = returnUrl;
-            }
-
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
@@ -277,9 +271,7 @@ namespace IdentityServer.Controllers
                     await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
 
                     _logger.LogInformation(3, "User created a new account with password.");
-                    if (!(parts?.Length > 1)) return Redirect(returnUrl);
-                    const string host = "http://localhost:5002/User/RegisterUser";
-                    return Redirect(host + "?email=" + model.Email);
+                    return Redirect(returnUrl + "?email=" + model.Email);
                 }
                 AddErrors(result);
             }

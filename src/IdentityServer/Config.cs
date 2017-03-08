@@ -11,13 +11,7 @@ namespace IdentityServer
             return new List<Scope>
             {
                 StandardScopes.OpenId,
-                StandardScopes.Profile,
-                new Scope
-                {
-                    Name = "UserInfo",
-                    DisplayName = "UserDetails",
-                    Type = ScopeType.Identity                   
-                }
+                StandardScopes.Profile                
             };
         }
 
@@ -30,12 +24,9 @@ namespace IdentityServer
 
                 new Client
                 {
-                    ClientId = "ResumeManagerApp",
-                    ClientName = "ResumeManager",
+                    ClientId = "ResumeManagerApp",                    
                     AllowedGrantTypes = GrantTypes.Implicit,
-
                     RequireConsent = false,
-
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())
@@ -46,8 +37,7 @@ namespace IdentityServer
                     AllowedScopes =
                     {
                         StandardScopes.OpenId.Name,
-                        StandardScopes.Profile.Name,
-                        "UserInfo"
+                        StandardScopes.Profile.Name                        
                     }
                 }
             };
