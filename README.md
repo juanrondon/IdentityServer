@@ -12,4 +12,4 @@ It is recommended to run IdentityServer in the console host. You can do this by 
 
 For more details please [Follow Link](http://docs.identityserver.io/en/release/quickstarts/0_overview.html#modify-hosting)
 
-Remember that in order to register or authenticate users in ResumeManger you will need to run this project in parallel.
+**Remember that in order to register or authenticate users in ResumeManger you will need to run this project in parallel.**
